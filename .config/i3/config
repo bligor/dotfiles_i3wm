@@ -22,7 +22,7 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Shift+T exec konsole
+bindsym $mod+Shift+T exec gnome-terminal
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -71,7 +71,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+s layout stacking
 bindsym $mod+Shift+w layout tabbed
 bindsym $mod+Shift+e layout toggle split
-
+bindsym $mod+Shift+s+e layout stacked
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -112,9 +112,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# exit i3 (logs you out of your X session) -> ctrl+alt+Back
-
-
 # lock
 # bindsym $mod+Shift+x exec i3lock --color 475263
 bindsym $mod+l exec betterlockscreen -l
@@ -154,7 +151,6 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 
 # floating windows
 for_window [class="Pavucontrol"] floating enable
-# for_window [class="Kalu"] floating enable
 
 
 # Multimedia Keys
@@ -170,62 +166,36 @@ bindsym ctrl+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill 
 # mute
 bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
 
-############################################
-# bindsym XF86AudioPlay exec playerctl play
-# bindsym XF86AudioPause exec playerctl pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
-
-# bindsym XF86AudioPlay exec mocp --toggle-pause
-# bindsym XF86AudioPause exec mocp --toggle-pause
-# bindsym XF86AudioStop exec mocp --togle-pause
-# bindsym XF86AudioNext exec mocp --next
-# bindsym XF86AudioPrev exec mocp --previous
-
 # Spotify related key bindings
-# bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-# bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
-# bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-# bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-bindsym $mod+F5 exec mocp --toggle-pause
-bindsym $mod+F6 exec mocp --stop
-bindsym $mod+F7 exec mocp --previous
-bindsym $mod+F8 exec mocp --next
-###############################################
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 # App shortcuts
 bindsym $mod+w exec "/usr/bin/i3-dmenu-desktop"
-#bindsym $mod+Space exec "/usr/bin/i3-dmenu-desktop"
 
 # Redirect sound to headphones
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
 
 # Autostart apps
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id "compton -cC"
 exec --no-startup-id nm-applet
 exec --no-startup-id "nitrogen --restore"
-exect --nostartup-id betterlockscreen -l
-# exec --no-startup-id "sleep 5s && kalu"
+exec --no-startup-id "betterlockscreen -l"
 
-###########################################
 # Brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-###########################################
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # My Programs
 bindsym $mod+ctrl+f exec firefox
-bindsym $mod+ctrl+a exec android-studio
-bindsym $mod+ctrl+n exec netbeans
-bindsym $mod+ctrl+m exec mysql-workbench
-bindsym $mod+ctrl+r exec ranger
+bindsym $mod+ctrl+n exec nemo
+bindsym $mod+ctrl+c exec google-chrome-stable
 
 # Wallpaper
-exec feh --bg-fill ~/Pictures/up.jpg
+exec --no-startup-id feh --bg-fill ~/Imagenes/up.jpg
 exec setxkbmap -option ctrl:nocaps
-#for_window [class="^(?i)firefox"] border pixel 1
 
 # Polybar
 exec_always ./.config/polybar/launch.sh
@@ -239,3 +209,4 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# exit i3 (logs you out of your X session) -> ctrl+alt+Back
