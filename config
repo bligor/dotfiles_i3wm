@@ -1,0 +1,79 @@
+# i3 config file (basic)
+
+# Set the Mod key to the Super key (usually the Windows key)
+set $mod Mod4
+
+# Font for the bar
+font pango:monospace 10
+
+# Use Kitty as the default terminal
+set $term kitty
+
+# Start a terminal with Mod+Enter
+bindsym $mod+Return exec $term
+
+# Exit i3 (Mod+Shift+E)
+bindsym $mod+Shift+e exec "i3-msg exit"
+
+# Kill focused window (Mod+Shift+Q)
+bindsym $mod+Shift+q kill
+
+# Dmenu for launching applications (Mod+D)
+bindsym $mod+d exec dmenu_run
+
+# Change focus between windows (Mod+Arrow)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window (Mod+Shift+Arrow)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split layout (Mod+V for vertical, Mod+H for horizontal)
+bindsym $mod+v split v
+bindsym $mod+h split h
+
+# Fullscreen toggle (Mod+F)
+bindsym $mod+f fullscreen toggle
+
+# Floating toggle (Mod+Shift+Space)
+bindsym $mod+Shift+space floating toggle
+
+# Reload i3 config (Mod+Shift+R)
+bindsym $mod+Shift+r reload
+
+# Restart i3 (Mod+Shift+C)
+bindsym $mod+Shift+c restart
+
+# Workspace switching (Mod+number)
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused window to workspace (Mod+Shift+number)
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Status bar setup (using i3status by default)
+bar {
+    status_command i3status
+}
